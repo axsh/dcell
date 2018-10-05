@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "reel",            "~> 0.6.1"
   gem.add_runtime_dependency "http",            "~> 3.0.0"
-  gem.add_runtime_dependency "msgpack",         "~> 0.5"
+  gem.add_runtime_dependency "msgpack",         "~> 1.2"
   gem.add_runtime_dependency "celluloid-redis", "~> 0.0.2"
   gem.add_runtime_dependency "redis-namespace", "~> 1.5"
 
