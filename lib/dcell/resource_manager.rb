@@ -16,6 +16,7 @@ module DCell
 
     def initialize
       @lock = Mutex.new
+      @lock_register = Mutex.new
       @items = {}
     end
 
@@ -44,9 +45,11 @@ module DCell
     def register(id, &block)
       ref = __get id
       return ref.__getobj__ if ref && ref.weakref_alive?
-      item = block.call
-      return nil unless item
-      __register id, item
+      @lock_register.synchronize do
+        item = block.call
+        return nil unless item
+        return __register id, item
+      end
     end
 
     # Iterates over registered and alive items
