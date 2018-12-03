@@ -33,7 +33,7 @@ module DCell
 
       # Send a heartbeat message after the given interval
       def send_heartbeat
-        return if DCell.id == @id
+        return if @remote_dead || DCell.id == @id
         request = DCell::Message::Heartbeat.new @id
         send_message request, @leech ? :response : :request
         @heartbeat = after(@heartbeat_rate) { send_heartbeat }
